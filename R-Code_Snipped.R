@@ -1,4 +1,14 @@
-data <- read.csv("hw1_data.csv"
+########################################################################################################
+#########
+###
+#                        W E E K   1 - Programming with R
+###
+########
+########################################################################################################
+#
+# Topics :
+
+data <- read.csv("hw1_data.csv")
 data
 
 #
@@ -182,4 +192,142 @@ OzoneMonth5 <- MonthEQ5["Ozone"]
 
 # Step 5 - Mean ermitteln
 sapply(OzoneMonth5, max)
+
+########################################################################################################
+#########
+###
+#                        W E E K   2 - Programming with R
+###
+########
+########################################################################################################
+#
+# Topics :
+# + Control Structures:
+#  - if-else  
+#  - For loop
+#  - nested For loops
+#  - while loops
+#  - Functions
+#
+#
+
+#-------------------------------------------------------------------------
+# Gewöhnlicher For-Loop welcher die werte 1-10 raus puttet
+for(i in 1:10) {
+        print(i)
+} 
+
+#-------------------------------------------------------------------------
+# nested For-Loop welcher eine Matrix raus puttet
+x <- matrix(1:6,2,3)
+for (i in seq_len(nrow(x))) {
+        for (j in seq_len(ncol(x))) {
+                print(x[i,j])
+        }
+}
+
+#-------------------------------------------------------------------------
+# Gewöhnlicher while Loop welcher die werte 1-10 raus puttet
+count <- 0
+while(count < 10){
+        print(count)
+        count <- count +1
+}
+
+#-------------------------------------------------------------------------
+# Einfache Function; 1 Parameter-Übergabe und Print 
+f <- function(x) {
+        print(x)  
+}
+f(90)
+
+#-------------------------------------------------------------------------
+# Function mit "default-werten", wenn keine Parameter übergeben wird
+f <- function(number, zip = 10) {
+        print(number / zip)  
+}
+f(90)
+
+#-------------------------------------------------------------------------
+# Function mit "default-werten" und qualifizierte Parameter-Übergabe "by name" also "number=90"
+f <- function(number = 20, zip = 10) {
+        print(number / zip)  
+}
+f(number=90,9)
+
+#-------------------------------------------------------------------------
+# Coding Standarts for R-Code
+#-------------------------------------------------------------------------
+#    1. Use Text Editor to write code
+#    2. Intend your Code (Einrücken) min.4 spaces, ideal 8 spaces
+#    3. line length limit for code should be max.80 chars
+#    4. Split functions into logical peaces       
+
+#-------------------------------------------------------------------------
+# Dates & Times
+#-------------------------------------------------------------------------
+#    1. Use Text Editor to write code
+#    2. Intend your Code (Einrücken) min.4 spaces, ideal 8 spaces
+#    3. line length limit for code should be max.80 chars
+
+# Time in R
+
+x <- Sys.time()
+x
+# [1] "2015-03-14 18:28:09 CET"
+
+p <- as.POSIXlt(x)
+
+# durch "unclass" werden die elemente von POSIXlt angezeigt
+names(unclass(p))
+# [1] "sec"    "min"    "hour"   "mday"   "mon"    "year"   "wday"  
+# [8] "yday"   "isdst"  "zone"   "gmtoff"
+
+#  All die folgenden Werte, die ausgeprintet werden, beziehen sich auf p bzw. x, also auf den Zeipunkt
+#  an welchen die Variable mit dem System datum befüllt wurde !!
+p$isdt
+#       aktuelle Sekunde
+p$sec
+#       aktuelle Minute
+p$min
+#       aktuelle Stunde
+p$hour
+#       Tag im akteullen Monat
+p$mday
+#       ????
+p$mon
+#       Tag des aktuellen Jahres
+p$year
+#       Nummer des aktuellen Wochentags
+p$wday
+#       
+p$yday
+#       
+p$isdst
+#       Zeitzone      
+p$zone
+#       
+p$gmtoff
+
+#-------------------------------------------------------------------------
+# Datum konvertieren
+datestring <- c("January 10, 2012 10:14")
+x <- strptime (datestring, "%B %d, %Y %H:%M")
+x
+
+
+h <- function(x, y = NULL, d = 3L) {
+        z <- cbind(x, d)
+        if(!is.null(y))
+                z <- z + y
+        else
+                z <- z + f
+        g <- x + y / z
+        if(d == 3L)
+                return(g)
+        g <- g + 10
+        g
+}
+h
+
 
