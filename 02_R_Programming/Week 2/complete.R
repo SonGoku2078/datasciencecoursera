@@ -28,7 +28,7 @@ complete <- function(directory, id = 1:332) {
       # Data Frame creation
       dFrame <- data.frame(row.names ="fileNo","count")
       dFrameTmp <- data.frame()
-    
+          
   #--- Loop
   
       # count all rows of file (without NA's)
@@ -39,8 +39,9 @@ complete <- function(directory, id = 1:332) {
       fileNo   <- substr(file_list[1],1,3)
   
       Temp  <- c(fileNo,rowCount)
-      dFrame  <- rbind(dFrame,Temp)  
-    
+#       dFrame  <- rbind(dFrame,Temp)  
+      dFrame  <- rbind(Temp,deparse.level = 2)  
+      names(dFrame) <- c("id", "nobs")
   
   
   
