@@ -1,6 +1,22 @@
 ########################################################################################################
 #########
 ###
+#                        Single Commands - Programming with R
+###
+########
+########################################################################################################
+#
+setwd("C:/Users/ahau/Documents/datasciencecoursera/02_R_Programming/Week 2/")
+
+#
+# damit werden alle Files und Folders aus den aktuellen Work-Directory angezeigt
+> dir(include.dirs=TRUE)
+[1] "complete.R"      "pollutantmean.R" "specdata"
+
+
+########################################################################################################
+#########
+###
 #                        W E E K   1 - Programming with R
 ###
 ########

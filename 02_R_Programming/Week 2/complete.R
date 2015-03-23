@@ -9,39 +9,40 @@
 #     b.) column 2. row count (3.)
 ###########################################################################################  
 
+setwd("C:/Users/ahau/Documents/datasciencecoursera/02_R_Programming/Week 2/")
+
 # Call function
-complete("specdata", 23)
+complete("specdata", 10:33)
 
 #------------------------------------------------------------------------
 # Function
 #------------------------------------------------------------------------
-complete <- function(directory, id = 1:332) {
+complete <- function(directory, fileId = 1:332) {
   
-  directory <- "specdata"
-  id <- 23
-
   # Read Directory for gathering all csv-files Names (all Files)
-  file_list <- list.files(directory,full.names = FALSE)
+  file_list <- list.files(directory,full.names = TRUE)
     
   #--- Preparations 
   
-      # Data Frame creation
-      dFrame <- data.frame(row.names ="fileNo","count")
-      dFrameTmp <- data.frame()
-          
-  #--- Loop
-  
-      # count all rows of file (without NA's)
-      dFile    <- read.csv(file_list[id])
-      rowCount <- sum(complete.cases(dFile))
-
-      # Extract only the Number out of the filename   
-      fileNo   <- substr(file_list[1],1,3)
-  
-      Temp  <- c(fileNo,rowCount)
-#       dFrame  <- rbind(dFrame,Temp)  
-      dFrame  <- rbind(Temp,deparse.level = 2)  
-      names(dFrame) <- c("id", "nobs")
+      id        <- vector()
+      nobs      <- vector()
   
   
+  #--- Loop -------------------------------------------------------------
   
+  for(i in fileId) {
+  
+  # count all rows of file (without NA's)
+      dFile  <- read.csv(file_list[i])
+      nobs   <- c(nobs,sum(complete.cases(dFile)))
+        
+  
+  # Extract only the Number out of the filename   
+      id     <- c(id,as.numeric(substr(file_list[i],10,12)))
+  
+  } # eoLoop
+  
+  # Move Vectors into DataFrame   
+  dFrame <- as.data.frame(cbind(id,nobs))
+  dFrame
+} # eoFunction
